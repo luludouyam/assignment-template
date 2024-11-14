@@ -64,7 +64,7 @@ def Chat():
         st.chat_message("assistant").write(stream_response)
         st.session_state.messages.append({"role": "assistant", "content": incomingmsg})
             
-def Graph():
+def graph():
     # Initialize
     d3 = d3graph()
     # Load karate example
@@ -73,7 +73,7 @@ def Graph():
     label = df['label'].values
     node_size = df['degree'].values
 
-    d3.Graph(adjmat)
+    d3.graph(adjmat)
     d3.set_node_properties(color=df['label'].values)
     d3.show()
 
@@ -82,8 +82,8 @@ def Graph():
 
 home_page = st.Page(home, title="Homepage")
 info_page = st.Page(Chat, title="Chat")
-Graph_page = st.Page(Graph, title="Graph")
+graph_page = st.Page(graph, title="graph")
 
-pg = st.navigation([home_page, info_page, Graph_page])
+pg = st.navigation([home_page, info_page, graph_page])
 
 pg.run()
