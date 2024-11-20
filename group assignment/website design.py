@@ -7,6 +7,7 @@ from controlnet_aux import OpenposeDetector
 from diffusers.utils import load_image
 import ollama
 from streamlit_d3graph import d3graph
+from streamlit_drawable_canvas import st_canvas
 
 import numpy as np
 if 'openpose' not in st.session_state:
@@ -80,10 +81,44 @@ def graph():
     d3.set_node_properties(label=label, color=label, cmap='Set1')
     d3.show()
 
+def painting():
+    drawing_mode = st.sidebar.selectbox(
+        "Drawing tool:",
+        ("freedraw", "line", "rect", "circle", "transform", "polygon", "point"),
+    )
+    stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 3)
+    stroke_color = st.sidebar.color_picker("Stroke color hex: ")
+    bg_color = st.sidebar.color_picker("Background color hex: ", "#eee")
+    bg_image = st.sidebar.file_uploader("Background image:", type=["png", "jpg"])
+    realtime_update = st.sidebar.checkbox("Update in realtime", True)
+
+    canvas_result = st_canvas(
+        fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+        stroke_width=stroke_width,
+        stroke_color=stroke_color,
+        background_color=bg_color,
+        background_image=Image.open(bg_image) if bg_image else None,
+        update_streamlit=realtime_update,
+        height=400,
+        width=600,
+        drawing_mode=drawing_mode,
+        key="canvas",
+    )
+if __name__ == "__painting__":
+    st.set_page_config(
+        page_title="Streamlit Drawable Canvas Demo", page_icon=":pencil2:"
+    )
+    st.title("Drawable Canvas Demo")
+    st.sidebar.subheader("Configuration")
+    painting()
+
+
 home_page = st.Page(home, title="Homepage")
 info_page = st.Page(Chat, title="Chat")
 graph_page = st.Page(graph, title="graph")
+painting_page2 = st.Page(painting, title="Painting")
 
-pg = st.navigation([home_page, info_page, graph_page])
+
+pg = st.navigation([home_page, info_page, graph_page, painting_page2])
 
 pg.run()
