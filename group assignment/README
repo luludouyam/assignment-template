@@ -1,0 +1,51 @@
+Streamlit Application README
+Overview
+This Streamlit application is designed to enhance the grocery shopping experience for mainland students studying in Hong Kong by integrating smart technology and providing a lifestyle assistance platform. The app offers four core functions aimed at improving the dining experience.
+
+Features
+Video Frame Processing: Utilizes Openpose detection to analyze video frames and apply image processing techniques like Canny edge detection.
+
+Chatbot: Powered by Ollama, this chatbot allows for real-time conversations, providing assistance and support.
+
+Graph Visualization: Uses streamlit_d3graph to visualize and interact with graph data, such as the karate club example.
+
+Drawing Canvas: A customizable canvas for drawing, allowing users to select tools, colors, and more.
+
+Getting Started
+To run this application, follow these steps:
+
+Installation: Ensure you have Python and Streamlit installed. Then, install the required packages:
+
+bash
+pip install streamlit streamlit-webrtc PIL opencv-python-headless diffusers llama-cpp streamlit-d3graph streamlit-drawable-canvas
+Running the App: Navigate to the directory containing the app and run:
+
+bash
+streamlit run app.py
+Using the App: Once the app is running, you can access the different pages through the navigation menu.
+
+Pages
+Home: The homepage where video frame processing is demonstrated.
+Chat: The chatbot interface for interacting with the Ollama-powered chatbot.
+Graph: The graph visualization page for exploring graph data.
+Painting: The drawing canvas for creative expression.
+Code Highlights
+Video Frame Callback: Processes video frames using Openpose and image processing techniques.
+Chatbot Interaction: Handles user input and responds with Ollama-generated messages.
+Graph Initialization: Sets up and displays graph data using d3graph.
+Canvas Configuration: Allows users to configure the drawing canvas with various settings.
+Dependencies
+streamlit: For building the web application.
+streamlit-webrtc: For real-time video processing.
+PIL and opencv-python-headless: For image processing.
+diffusers: For loading images.
+ollama: For chatbot functionality.
+streamlit-d3graph: For graph visualization.
+streamlit-drawable-canvas: For the drawing canvas.
+Contributing
+Feel free to contribute to this project by submitting pull requests or creating issues for enhancements and bug reports.
+
+License
+This project is open-source and available under the MIT License.
+
+Please note that the image link provided in the code for the Openpose example is not accessible due to network issues. You may need to verify the link's validity and try again. If you need further assistance with this, please check the link and your network connection.
